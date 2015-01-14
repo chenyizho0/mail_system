@@ -175,6 +175,14 @@ int send_socket(string sendmsg,int sockfd)
 	return  send(sockfd,sendmsg.c_str(),sendmsg.size(),0); 
 }
 
+int recv_socket(string & sRecvMsg,int sockfd)
+{
+	memset(buffer,0,sizeof(buffer));
+	int len = recv(sockfd,buffer,sizeof(buffer),0);
+	sRecvMsg = string(buffer);
+	return len;
+}
+
 
 
 int main(int argc,char ** argv)
@@ -194,7 +202,12 @@ int main(int argc,char ** argv)
 	int len;
 	memset(&dest,0,sizeof(dest));
 	dest.sin_family = AF_INET;
-	dest.sin_port = htons(xxx);
+	dest.sin_port = htons(22222);
+	if (inet_aton("127.0.0.1",(struct in_addr *)&dest.sin_addr.s_addr) == 0)
+	{
+		perror("127.0.0.1");
+		exit(errno);
+	}
 	if ((sockfd = socket(AF_INET,SOCK_STREAM,0)) < 0)
 	{
 		perror("Socket");
@@ -205,9 +218,35 @@ int main(int argc,char ** argv)
 		perror("Connect ");
 		exit(errno);
 	}
-	send_socket(sSendmsg,sockfd);
+	int iRet = send_socket(sSendmsg,sockfd);
 	
-
+	if (iRet < 0)
+	{
+		printf("send error\n");
+	}
+	string sCheckIdReturnMsg;
+	iRet = recv_socket(sCheckIdReturnMsg,sockfd);
+	if (iRet > 0)
+	{
+		CheckIdReturnMsg checkidreturnmsg;
+		if (checkidreturnmsg.ParseFromString(sCheckIdReturnMsg))
+		{
+			cout << checkidreturnmsg.error_code() << endl; 
+		}
+		else
+		{
+			printf("parse error\n");
+		}
+	}
+	else if (iRet < 0)
+	{
+		printf("error\n");
+	}
+	else 
+	{
+		printf("the other close\n");
+	}
+	close(sockfd);
 
 	return 0;
 }
