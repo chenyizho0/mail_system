@@ -33,6 +33,8 @@ void protobuf_ShutdownFile_mail_2eproto();
 
 class SenderMsg;
 class MailMsg;
+class CheckIdReturnMsg;
+class SendMailReturnMsg;
 
 // ===================================================================
 
@@ -307,6 +309,170 @@ class MailMsg : public ::google::protobuf::Message {
 
   void InitAsDefaultInstance();
   static MailMsg* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class CheckIdReturnMsg : public ::google::protobuf::Message {
+ public:
+  CheckIdReturnMsg();
+  virtual ~CheckIdReturnMsg();
+
+  CheckIdReturnMsg(const CheckIdReturnMsg& from);
+
+  inline CheckIdReturnMsg& operator=(const CheckIdReturnMsg& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CheckIdReturnMsg& default_instance();
+
+  void Swap(CheckIdReturnMsg* other);
+
+  // implements Message ----------------------------------------------
+
+  CheckIdReturnMsg* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const CheckIdReturnMsg& from);
+  void MergeFrom(const CheckIdReturnMsg& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required int32 error_code = 1;
+  inline bool has_error_code() const;
+  inline void clear_error_code();
+  static const int kErrorCodeFieldNumber = 1;
+  inline ::google::protobuf::int32 error_code() const;
+  inline void set_error_code(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:CheckIdReturnMsg)
+ private:
+  inline void set_has_error_code();
+  inline void clear_has_error_code();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::int32 error_code_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+
+  friend void  protobuf_AddDesc_mail_2eproto();
+  friend void protobuf_AssignDesc_mail_2eproto();
+  friend void protobuf_ShutdownFile_mail_2eproto();
+
+  void InitAsDefaultInstance();
+  static CheckIdReturnMsg* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class SendMailReturnMsg : public ::google::protobuf::Message {
+ public:
+  SendMailReturnMsg();
+  virtual ~SendMailReturnMsg();
+
+  SendMailReturnMsg(const SendMailReturnMsg& from);
+
+  inline SendMailReturnMsg& operator=(const SendMailReturnMsg& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const SendMailReturnMsg& default_instance();
+
+  void Swap(SendMailReturnMsg* other);
+
+  // implements Message ----------------------------------------------
+
+  SendMailReturnMsg* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const SendMailReturnMsg& from);
+  void MergeFrom(const SendMailReturnMsg& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required int32 error_code = 1;
+  inline bool has_error_code() const;
+  inline void clear_error_code();
+  static const int kErrorCodeFieldNumber = 1;
+  inline ::google::protobuf::int32 error_code() const;
+  inline void set_error_code(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:SendMailReturnMsg)
+ private:
+  inline void set_has_error_code();
+  inline void clear_has_error_code();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::int32 error_code_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+
+  friend void  protobuf_AddDesc_mail_2eproto();
+  friend void protobuf_AssignDesc_mail_2eproto();
+  friend void protobuf_ShutdownFile_mail_2eproto();
+
+  void InitAsDefaultInstance();
+  static SendMailReturnMsg* default_instance_;
 };
 // ===================================================================
 
@@ -899,6 +1065,58 @@ inline void MailMsg::set_allocated_mailcontent(::std::string* mailcontent) {
     clear_has_mailcontent();
     mailcontent_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   }
+}
+
+// -------------------------------------------------------------------
+
+// CheckIdReturnMsg
+
+// required int32 error_code = 1;
+inline bool CheckIdReturnMsg::has_error_code() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CheckIdReturnMsg::set_has_error_code() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CheckIdReturnMsg::clear_has_error_code() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CheckIdReturnMsg::clear_error_code() {
+  error_code_ = 0;
+  clear_has_error_code();
+}
+inline ::google::protobuf::int32 CheckIdReturnMsg::error_code() const {
+  return error_code_;
+}
+inline void CheckIdReturnMsg::set_error_code(::google::protobuf::int32 value) {
+  set_has_error_code();
+  error_code_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// SendMailReturnMsg
+
+// required int32 error_code = 1;
+inline bool SendMailReturnMsg::has_error_code() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void SendMailReturnMsg::set_has_error_code() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void SendMailReturnMsg::clear_has_error_code() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void SendMailReturnMsg::clear_error_code() {
+  error_code_ = 0;
+  clear_has_error_code();
+}
+inline ::google::protobuf::int32 SendMailReturnMsg::error_code() const {
+  return error_code_;
+}
+inline void SendMailReturnMsg::set_error_code(::google::protobuf::int32 value) {
+  set_has_error_code();
+  error_code_ = value;
 }
 
 

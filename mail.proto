@@ -14,3 +14,14 @@ message MailMsg
 	required string mailSubject = 2;
 	required string mailContent = 3;
 }
+
+message CheckIdReturnMsg
+{
+	required int32 error_code = 1;
+}
+
+message SendMailReturnMsg
+{
+	required int32 error_code = 1;
+}
+
