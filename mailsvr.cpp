@@ -14,6 +14,7 @@
 #include<unistd.h>
 #include<errno.h>
 #include"mail.pb.h"
+#include"mailsvrimpl.h"
 using namespace std;
 
 int myport = 22222;
@@ -68,7 +69,16 @@ int main()
 		cout << sendermsg.base64passwd() << endl;
 	}
 	CheckIdReturnMsg checkidreturnmsg;
-	checkidreturnmsg.set_error_code(-5);
+
+
+	int iRet = func(sendermsg,checkidreturnmsg);
+	if (iRet != 0)
+	{
+		printf("logic error\n");
+		return -3;
+	}
+
+
 	string sCheckidreturnmsg;
 	checkidreturnmsg.SerializeToString(&sCheckidreturnmsg);
 	send(new_fd,sCheckidreturnmsg.c_str(),sCheckidreturnmsg.size(),0);
