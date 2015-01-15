@@ -30,6 +30,9 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* SendMailReturnMsg_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   SendMailReturnMsg_reflection_ = NULL;
+const ::google::protobuf::Descriptor* FuncType_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  FuncType_reflection_ = NULL;
 
 }  // namespace
 
@@ -107,6 +110,22 @@ void protobuf_AssignDesc_mail_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(SendMailReturnMsg));
+  FuncType_descriptor_ = file->message_type(4);
+  static const int FuncType_offsets_[2] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FuncType, msg_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FuncType, functype_),
+  };
+  FuncType_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      FuncType_descriptor_,
+      FuncType::default_instance_,
+      FuncType_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FuncType, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FuncType, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(FuncType));
 }
 
 namespace {
@@ -127,6 +146,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
     CheckIdReturnMsg_descriptor_, &CheckIdReturnMsg::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     SendMailReturnMsg_descriptor_, &SendMailReturnMsg::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    FuncType_descriptor_, &FuncType::default_instance());
 }
 
 }  // namespace
@@ -140,6 +161,8 @@ void protobuf_ShutdownFile_mail_2eproto() {
   delete CheckIdReturnMsg_reflection_;
   delete SendMailReturnMsg::default_instance_;
   delete SendMailReturnMsg_reflection_;
+  delete FuncType::default_instance_;
+  delete FuncType_reflection_;
 }
 
 void protobuf_AddDesc_mail_2eproto() {
@@ -156,17 +179,20 @@ void protobuf_AddDesc_mail_2eproto() {
     "ilMsg\022\024\n\014receiverName\030\001 \002(\t\022\023\n\013mailSubje"
     "ct\030\002 \002(\t\022\023\n\013mailContent\030\003 \002(\t\"&\n\020CheckId"
     "ReturnMsg\022\022\n\nerror_code\030\001 \002(\005\"\'\n\021SendMai"
-    "lReturnMsg\022\022\n\nerror_code\030\001 \002(\005", 310);
+    "lReturnMsg\022\022\n\nerror_code\030\001 \002(\005\")\n\010FuncTy"
+    "pe\022\013\n\003msg\030\001 \002(\t\022\020\n\010functype\030\002 \002(\005", 353);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "mail.proto", &protobuf_RegisterTypes);
   SenderMsg::default_instance_ = new SenderMsg();
   MailMsg::default_instance_ = new MailMsg();
   CheckIdReturnMsg::default_instance_ = new CheckIdReturnMsg();
   SendMailReturnMsg::default_instance_ = new SendMailReturnMsg();
+  FuncType::default_instance_ = new FuncType();
   SenderMsg::default_instance_->InitAsDefaultInstance();
   MailMsg::default_instance_->InitAsDefaultInstance();
   CheckIdReturnMsg::default_instance_->InitAsDefaultInstance();
   SendMailReturnMsg::default_instance_->InitAsDefaultInstance();
+  FuncType::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_mail_2eproto);
 }
 
@@ -1425,6 +1451,272 @@ void SendMailReturnMsg::Swap(SendMailReturnMsg* other) {
   ::google::protobuf::Metadata metadata;
   metadata.descriptor = SendMailReturnMsg_descriptor_;
   metadata.reflection = SendMailReturnMsg_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int FuncType::kMsgFieldNumber;
+const int FuncType::kFunctypeFieldNumber;
+#endif  // !_MSC_VER
+
+FuncType::FuncType()
+  : ::google::protobuf::Message() {
+  SharedCtor();
+}
+
+void FuncType::InitAsDefaultInstance() {
+}
+
+FuncType::FuncType(const FuncType& from)
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void FuncType::SharedCtor() {
+  _cached_size_ = 0;
+  msg_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  functype_ = 0;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+FuncType::~FuncType() {
+  SharedDtor();
+}
+
+void FuncType::SharedDtor() {
+  if (msg_ != &::google::protobuf::internal::kEmptyString) {
+    delete msg_;
+  }
+  if (this != default_instance_) {
+  }
+}
+
+void FuncType::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* FuncType::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return FuncType_descriptor_;
+}
+
+const FuncType& FuncType::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_mail_2eproto();
+  return *default_instance_;
+}
+
+FuncType* FuncType::default_instance_ = NULL;
+
+FuncType* FuncType::New() const {
+  return new FuncType;
+}
+
+void FuncType::Clear() {
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (has_msg()) {
+      if (msg_ != &::google::protobuf::internal::kEmptyString) {
+        msg_->clear();
+      }
+    }
+    functype_ = 0;
+  }
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool FuncType::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // required string msg = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_msg()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+            this->msg().data(), this->msg().length(),
+            ::google::protobuf::internal::WireFormat::PARSE);
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(16)) goto parse_functype;
+        break;
+      }
+
+      // required int32 functype = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_functype:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &functype_)));
+          set_has_functype();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void FuncType::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // required string msg = 1;
+  if (has_msg()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->msg().data(), this->msg().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      1, this->msg(), output);
+  }
+
+  // required int32 functype = 2;
+  if (has_functype()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->functype(), output);
+  }
+
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* FuncType::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // required string msg = 1;
+  if (has_msg()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->msg().data(), this->msg().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->msg(), target);
+  }
+
+  // required int32 functype = 2;
+  if (has_functype()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->functype(), target);
+  }
+
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int FuncType::ByteSize() const {
+  int total_size = 0;
+
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // required string msg = 1;
+    if (has_msg()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->msg());
+    }
+
+    // required int32 functype = 2;
+    if (has_functype()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->functype());
+    }
+
+  }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void FuncType::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const FuncType* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const FuncType*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void FuncType::MergeFrom(const FuncType& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_msg()) {
+      set_msg(from.msg());
+    }
+    if (from.has_functype()) {
+      set_functype(from.functype());
+    }
+  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void FuncType::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void FuncType::CopyFrom(const FuncType& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool FuncType::IsInitialized() const {
+  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
+
+  return true;
+}
+
+void FuncType::Swap(FuncType* other) {
+  if (other != this) {
+    std::swap(msg_, other->msg_);
+    std::swap(functype_, other->functype_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata FuncType::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = FuncType_descriptor_;
+  metadata.reflection = FuncType_reflection_;
   return metadata;
 }
 

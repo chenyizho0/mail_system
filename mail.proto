@@ -25,3 +25,8 @@ message SendMailReturnMsg
 	required int32 error_code = 1;
 }
 
+message FuncType
+{
+	required string msg = 1;
+	required int32 functype = 2;
+}

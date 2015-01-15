@@ -1,6 +1,6 @@
 all: mailsvr mailclient
 clean: 
-	rm -f mailclient mail.pb.h mail.pb.cc
+	rm -f mailsvr mailclient mail.pb.h mail.pb.cc
 protobuf: mail.proto
 	protoc --cpp_out=. mail.proto 
 mailclient: mailclient.cpp protobuf
