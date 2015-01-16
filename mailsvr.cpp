@@ -80,36 +80,49 @@ int main()
 		{
 			close(sockfd);
 			char buffer[1000];
-	  		recv(new_fd,buffer,1000,0);
-	  		SenderMsg sendermsg;
-	  		if (sendermsg.ParseFromString(string(buffer)) != 0)
-	  		{
-	  			printf("parse error\n");
-	  			return -2;
-	  		}
-	  		else
-	  		{
-	  			cout << sendermsg.smtpsvrport() << endl;
-	  			cout << sendermsg.sendername() << endl;
-	  			cout << sendermsg.sendermailname() << endl;
-	  			cout << sendermsg.smtpsvrname() << endl;
-	  			cout << sendermsg.base64name() << endl;
-	  			cout << sendermsg.base64passwd() << endl;
-	  		}
-	  		CheckIdReturnMsg checkidreturnmsg;
-	  
-	/*lo	gic code*/  
-	  		int iRet = func(sendermsg,checkidreturnmsg);
-	  		if (iRet != 0)
-	  		{
-	  			printf("logic error\n");
-	  			return -3;
-	  		}
-	  
-	  
-	  		string sCheckidreturnmsg;
-	  		checkidreturnmsg.SerializeToString(&sCheckidreturnmsg);
-	  		send(new_fd,sCheckidreturnmsg.c_str(),sCheckidreturnmsg.size(),0);
+	  		int numbytes = recv(new_fd,buffer,1000,0);
+			if (numbytes < 0)
+			{
+				printf("recv error\n");
+				return -5;
+			}
+			string sFuncType = string(buffer,numbytes);
+			FuncType functype_obj;
+			if (!functype_obj.ParseFromString(sFuncType))
+			{
+				printf("parse functype error\n");
+				return -2;
+			}
+			string sMsg;
+			int iType = 0;
+			sMsg = functype_obj.msg();
+			iType = functype_obj.type();
+			switch(iType)
+			{
+				case 2:
+				{
+					SenderMsg sendermsg;
+					if (!sendermsg.ParseFromString(sMsg))
+					{
+						printf("parse error\n");
+						return -2;
+					}
+					CheckIdReturnMsg checkidreturnmsg;
+					int iRet = func(sendermsg,checkidreturnmsg);
+					if (iRet != 0)
+					{
+						printf("logic error\n");
+						return -3;
+					}
+					string sCheckidreturnmsg;
+					checkidreturnmsg.SerializeToString(&sCheckidreturnmsg);
+					send(new_fd,sCheckidreturnmsg.c_str(),sCheckidreturnmsg.size(),0);
+					break;
+				}
+				default:
+					break;
+			}
+
 			close(new_fd);
 			exit(0);
 		}
