@@ -185,109 +185,6 @@ int recv_socket(string & sRecvMsg,int sockfd)
 
 
 
-class MailClient
-{
-public:
-	MailClient(string configFile);
-	~MailClient();
-	int Connect();
-	int FuncCheckId(const SenderMsg sendermsg_obj,CheckIdReturnMsg &checkidreturnmsg_obj);
-	int FuncSendMail(const MailMsg mailmsg_obj,SendMailReturnMsg &Sendmailreturnmsg_obj);
-private:
-	string sIp;
-	int iPort;
-	int sockfd;
-	struct sockaddr_in sockaddr_in_obj;
-};
-
-MailClient::MailClient(string configFile)
-{
-	ifstream readfile;
-	readfile.open(configFile.c_str());
-	if (!readfile.is_open())
-	{
-		printf("config file error\n");
-		return;
-	}
-	char buf[100];
-	if (!readfile.eof())
-	{
-		readfile.getline(buf,100);
-		sIp = string(buf);
-	}
-	if (!readfile.eof())
-	{
-		readfile.getline(buf,100);
-		iPort = atoi(buf);
-	}
-	readfile.close();
-}
-
-int MailClient::Connect()
-{
-	memset(&sockaddr_in_obj,0,sizeof(sockaddr_in_obj));
-	dest.sin_family = AF_INET;
-	dest.sin_port = htons(iPort);
-	if (inet_aton(sIp.c_str(),(struct in_addr *)&sockaddr_in_obj.sin_addr.s_addr) == 0)
-	{
-		printf("ip error : %s\n",sIp.c_str());
-		return -1;
-	}
-	if ((sockfd = socket(AF_INET,SOCK_STREAM,0)) < 0)
-	{
-		printf("create socket error\n");
-		return -2;
-	}
-	if (connect(sockfd,(struct sockaddr *) &dest,sizeof(dest))==-1)
-	{
-		printf("connect error\n");
-		return -3;
-	}
-	return 0;
-}
-
-MailClient::~MailClient()
-{
-	close(sockfd);
-}
-
-int MailClient::FuncCheckId(const SenderMsg sendermsg_obj,CheckIdReturnMsg &checkidreturnmsg_obj)
-{
-	FuncType functype_obj;
-	string sendermsg_obj_str;
-	sendermsg_obj.SerializeToString(&sendermsg_obj_str);
-	functype_obj.set_msg(sendermsg_obj_str);
-	functype_obj.set_type(1);
-	string sSendMsg;
-	functype_obj.SerializeToString(&sSendMsg);
-	int iRet = send_socket(sSendMsg,sockfd);
-	if (iRet < 0)
-	{
-		printf("send error\n");
-		return -1;
-	}
-	string sCheckIdReturnMsg;
-	iRet = recv_socket(sCheckIdReturnMsg,sockfd);
-	if (iRet > 0)
-	{
-		if (!checkidreturnmsg_obj.ParseFromString(sCheckIdReturnMsg))
-		{
-			printf("parse error\n");
-			return -4;
-		}
-	}
-	else if (iRet < 0)
-	{
-		return -2;
-	}
-	else 
-	{
-		printf("the other close\n");
-		return -3;
-	}
-	return 0;
-}
-
 int main(int argc,char ** argv)
 {
 	readconfig("user.conf");
@@ -302,9 +199,6 @@ int main(int argc,char ** argv)
 	sendmsg.set_base64passwd(string(base64Password));
 	string sSendmsg;
 	sendmsg.SerializeToString(&sSendmsg);
-
-
-
 	int len;
 	memset(&dest,0,sizeof(dest));
 	dest.sin_family = AF_INET;

@@ -113,7 +113,7 @@ void protobuf_AssignDesc_mail_2eproto() {
   FuncType_descriptor_ = file->message_type(4);
   static const int FuncType_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FuncType, msg_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FuncType, functype_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FuncType, type_),
   };
   FuncType_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -179,8 +179,8 @@ void protobuf_AddDesc_mail_2eproto() {
     "ilMsg\022\024\n\014receiverName\030\001 \002(\t\022\023\n\013mailSubje"
     "ct\030\002 \002(\t\022\023\n\013mailContent\030\003 \002(\t\"&\n\020CheckId"
     "ReturnMsg\022\022\n\nerror_code\030\001 \002(\005\"\'\n\021SendMai"
-    "lReturnMsg\022\022\n\nerror_code\030\001 \002(\005\")\n\010FuncTy"
-    "pe\022\013\n\003msg\030\001 \002(\t\022\020\n\010functype\030\002 \002(\005", 353);
+    "lReturnMsg\022\022\n\nerror_code\030\001 \002(\005\"%\n\010FuncTy"
+    "pe\022\013\n\003msg\030\001 \002(\t\022\014\n\004type\030\002 \002(\005", 349);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "mail.proto", &protobuf_RegisterTypes);
   SenderMsg::default_instance_ = new SenderMsg();
@@ -1459,7 +1459,7 @@ void SendMailReturnMsg::Swap(SendMailReturnMsg* other) {
 
 #ifndef _MSC_VER
 const int FuncType::kMsgFieldNumber;
-const int FuncType::kFunctypeFieldNumber;
+const int FuncType::kTypeFieldNumber;
 #endif  // !_MSC_VER
 
 FuncType::FuncType()
@@ -1479,7 +1479,7 @@ FuncType::FuncType(const FuncType& from)
 void FuncType::SharedCtor() {
   _cached_size_ = 0;
   msg_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
-  functype_ = 0;
+  type_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -1523,7 +1523,7 @@ void FuncType::Clear() {
         msg_->clear();
       }
     }
-    functype_ = 0;
+    type_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -1547,19 +1547,19 @@ bool FuncType::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(16)) goto parse_functype;
+        if (input->ExpectTag(16)) goto parse_type;
         break;
       }
 
-      // required int32 functype = 2;
+      // required int32 type = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-         parse_functype:
+         parse_type:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &functype_)));
-          set_has_functype();
+                 input, &type_)));
+          set_has_type();
         } else {
           goto handle_uninterpreted;
         }
@@ -1594,9 +1594,9 @@ void FuncType::SerializeWithCachedSizes(
       1, this->msg(), output);
   }
 
-  // required int32 functype = 2;
-  if (has_functype()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->functype(), output);
+  // required int32 type = 2;
+  if (has_type()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->type(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -1617,9 +1617,9 @@ void FuncType::SerializeWithCachedSizes(
         1, this->msg(), target);
   }
 
-  // required int32 functype = 2;
-  if (has_functype()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->functype(), target);
+  // required int32 type = 2;
+  if (has_type()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->type(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -1640,11 +1640,11 @@ int FuncType::ByteSize() const {
           this->msg());
     }
 
-    // required int32 functype = 2;
-    if (has_functype()) {
+    // required int32 type = 2;
+    if (has_type()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->functype());
+          this->type());
     }
 
   }
@@ -1677,8 +1677,8 @@ void FuncType::MergeFrom(const FuncType& from) {
     if (from.has_msg()) {
       set_msg(from.msg());
     }
-    if (from.has_functype()) {
-      set_functype(from.functype());
+    if (from.has_type()) {
+      set_type(from.type());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -1705,7 +1705,7 @@ bool FuncType::IsInitialized() const {
 void FuncType::Swap(FuncType* other) {
   if (other != this) {
     std::swap(msg_, other->msg_);
-    std::swap(functype_, other->functype_);
+    std::swap(type_, other->type_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

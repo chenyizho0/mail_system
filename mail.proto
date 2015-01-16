@@ -28,5 +28,5 @@ message SendMailReturnMsg
 message FuncType
 {
 	required string msg = 1;
-	required int32 functype = 2;
+	required int32 type = 2;
 }

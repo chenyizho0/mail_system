@@ -543,24 +543,24 @@ class FuncType : public ::google::protobuf::Message {
   inline ::std::string* release_msg();
   inline void set_allocated_msg(::std::string* msg);
 
-  // required int32 functype = 2;
-  inline bool has_functype() const;
-  inline void clear_functype();
-  static const int kFunctypeFieldNumber = 2;
-  inline ::google::protobuf::int32 functype() const;
-  inline void set_functype(::google::protobuf::int32 value);
+  // required int32 type = 2;
+  inline bool has_type() const;
+  inline void clear_type();
+  static const int kTypeFieldNumber = 2;
+  inline ::google::protobuf::int32 type() const;
+  inline void set_type(::google::protobuf::int32 value);
 
   // @@protoc_insertion_point(class_scope:FuncType)
  private:
   inline void set_has_msg();
   inline void clear_has_msg();
-  inline void set_has_functype();
-  inline void clear_has_functype();
+  inline void set_has_type();
+  inline void clear_has_type();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::std::string* msg_;
-  ::google::protobuf::int32 functype_;
+  ::google::protobuf::int32 type_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
@@ -1291,26 +1291,26 @@ inline void FuncType::set_allocated_msg(::std::string* msg) {
   }
 }
 
-// required int32 functype = 2;
-inline bool FuncType::has_functype() const {
+// required int32 type = 2;
+inline bool FuncType::has_type() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
-inline void FuncType::set_has_functype() {
+inline void FuncType::set_has_type() {
   _has_bits_[0] |= 0x00000002u;
 }
-inline void FuncType::clear_has_functype() {
+inline void FuncType::clear_has_type() {
   _has_bits_[0] &= ~0x00000002u;
 }
-inline void FuncType::clear_functype() {
-  functype_ = 0;
-  clear_has_functype();
+inline void FuncType::clear_type() {
+  type_ = 0;
+  clear_has_type();
 }
-inline ::google::protobuf::int32 FuncType::functype() const {
-  return functype_;
+inline ::google::protobuf::int32 FuncType::type() const {
+  return type_;
 }
-inline void FuncType::set_functype(::google::protobuf::int32 value) {
-  set_has_functype();
-  functype_ = value;
+inline void FuncType::set_type(::google::protobuf::int32 value) {
+  set_has_type();
+  type_ = value;
 }
 
 
